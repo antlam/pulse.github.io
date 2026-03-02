@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jane Pulse - AI-Powered Business Insights</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Swap to Proxima Nova later -->
     <style>
         * {
             margin: 0;
@@ -47,17 +45,22 @@
             --neutral-100: #161c1d;
             --white: #ffffff;
             
+            /* Text colors */
+            --text-default: var(--neutral-100);
+            --text-subdued: var(--neutral-70);
+            --text-disabled: var(--neutral-50);
+            --text-link: var(--brand-60);
+            --text-link-hover: var(--brand-70);
+            
             /* Semantic */
-            --text-dark: var(--neutral-100);
-            --text-secondary: var(--neutral-70);
             --bg: var(--neutral-05);
             --border: var(--neutral-20);
         }
 
         body {
-            font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background-color: var(--bg);
-            color: var(--text-dark);
+            color: var(--text-default);
             line-height: 1.6;
         }
 
@@ -88,12 +91,12 @@
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 20px;
-            color: var(--text-dark);
+            color: var(--text-default);
         }
 
         .hero p {
             font-size: 1.125rem;
-            color: var(--text-secondary);
+            color: var(--text-subdued);
             margin-bottom: 40px;
             line-height: 1.7;
         }
@@ -141,14 +144,14 @@
         .form-note {
             margin-top: 16px;
             font-size: 0.875rem;
-            color: var(--text-secondary);
+            color: var(--text-subdued);
         }
 
         footer {
             padding: 40px 0;
             text-align: center;
             font-size: 0.875rem;
-            color: var(--text-secondary);
+            color: var(--text-subdued);
         }
 
         @media (max-width: 480px) {

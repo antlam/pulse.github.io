@@ -313,6 +313,24 @@
             font-weight: 600;
         }
 
+        .insight-cta {
+            display: inline-block;
+            margin-top: var(--space-2x);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--brand-60);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .insight-cta:hover {
+            color: var(--brand-70);
+        }
+
+        .insight-cta::after {
+            content: " →";
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .section-grid.wide {
@@ -434,14 +452,17 @@
                 
                 <div class="insight-item">
                     <p>Your <span class="highlight">Tuesday afternoon</span> slots have 40% more cancellations than other days. Consider sending reminder messages 48 hours before these appointments.</p>
+                    <a href="#" class="insight-cta">Send reminders in Jane</a>
                 </div>
                 
                 <div class="insight-item">
                     <p><span class="highlight">23 patients</span> haven't booked a follow-up in over 60 days. A quick check-in email could help bring them back.</p>
+                    <a href="#" class="insight-cta">View patient list</a>
                 </div>
                 
                 <div class="insight-item">
                     <p>Revenue from <span class="highlight">massage therapy</span> is up 18% this month. This service is trending — consider promoting it more.</p>
+                    <a href="#" class="insight-cta">See service details</a>
                 </div>
             </div>
         </section>

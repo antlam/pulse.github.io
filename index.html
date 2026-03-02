@@ -15,18 +15,48 @@
         }
 
         :root {
-            --jane-teal: #3eb1a8;
-            --jane-teal-dark: #359990;
-            --text-dark: #2d3748;
-            --text-secondary: #5a6a7a;
-            --bg-cream: #faf9f7;
+            /* Brand - Teal */
+            --brand-05: #eafafb;
+            --brand-50: #00c1ca;
+            --brand-60: #00b1b8;
+            --brand-70: #00989e;
+            
+            /* Discovery - Purple */
+            --discovery-50: #ab6de1;
+            --discovery-60: #722ed1;
+            
+            /* Critical - Red */
+            --critical-50: #ff4b3a;
+            --critical-60: #db2b2a;
+            
+            /* Success - Green */
+            --success-50: #33d653;
+            --success-60: #25b650;
+            
+            /* Warning - Yellow */
+            --warning-50: #fba919;
+            --warning-60: #d78812;
+            
+            /* Neutral */
+            --neutral-05: #fcfdfd;
+            --neutral-10: #f9fafa;
+            --neutral-20: #ebeeee;
+            --neutral-50: #bcc6c6;
+            --neutral-70: #798d8e;
+            --neutral-90: #344243;
+            --neutral-100: #161c1d;
             --white: #ffffff;
-            --border: #e8e6e1;
+            
+            /* Semantic */
+            --text-dark: var(--neutral-100);
+            --text-secondary: var(--neutral-70);
+            --bg: var(--neutral-05);
+            --border: var(--neutral-20);
         }
 
         body {
             font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-cream);
+            background-color: var(--bg);
             color: var(--text-dark);
             line-height: 1.6;
         }
@@ -44,7 +74,7 @@
         .logo {
             font-size: 1.25rem;
             font-weight: 700;
-            color: var(--jane-teal);
+            color: var(--brand-50);
             text-decoration: none;
         }
 
@@ -79,7 +109,7 @@
             flex: 1;
             min-width: 220px;
             padding: 14px 18px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--neutral-50);
             border-radius: 8px;
             font-size: 1rem;
             font-family: inherit;
@@ -88,13 +118,13 @@
 
         .waitlist-form input:focus {
             outline: none;
-            border-color: var(--jane-teal);
+            border-color: var(--brand-50);
         }
 
         .btn {
             padding: 14px 28px;
-            background: var(--jane-teal);
-            color: white;
+            background: var(--brand-50);
+            color: var(--neutral-100);
             border: none;
             border-radius: 8px;
             font-size: 1rem;
@@ -105,7 +135,7 @@
         }
 
         .btn:hover {
-            background: var(--jane-teal-dark);
+            background: var(--brand-60);
         }
 
         .form-note {

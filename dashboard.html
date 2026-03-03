@@ -424,7 +424,7 @@
 
         <!-- AI Recommendations -->
         <section class="section">
-            <h2 class="section-title">Recommendations from AI</h2>
+            <h2 class="section-title">Suggested actions</h2>
             <div class="recommendations-grid">
                 <div class="recommendation-card">
                     <p>Your <span class="highlight">Tuesday afternoon</span> slots have 40% more cancellations than other days. Consider sending reminder messages 48 hours before these appointments.</p>
@@ -449,9 +449,20 @@
             </div>
         </section>
 
+        <!-- What you earned vs. what you collected -->
+        <section class="section">
+            <h2 class="section-title">What you earned vs. what you collected</h2>
+            <div class="chart-card">
+                <div class="chart-wrapper">
+                    <canvas id="billed-vs-collected-chart" role="img" aria-label="Bar chart: Billed and Collected revenue by month"></canvas>
+                </div>
+                <p class="chart-callout">You left <span class="highlight" id="left-on-table">$0</span> on the table this month.</p>
+            </div>
+        </section>
+
         <!-- Financial -->
         <section class="section">
-            <h2 class="section-title">Financial</h2>
+            <h2 class="section-title">Your earnings snapshot</h2>
             <div class="alert" role="alert">
                 <div class="alert-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24">
@@ -517,20 +528,9 @@
             </div>
         </section>
 
-        <!-- What you earned vs. what you collected -->
-        <section class="section">
-            <h2 class="section-title">What you earned vs. what you collected</h2>
-            <div class="chart-card">
-                <div class="chart-wrapper">
-                    <canvas id="billed-vs-collected-chart" role="img" aria-label="Bar chart: Billed and Collected revenue by month"></canvas>
-                </div>
-                <p class="chart-callout">You left <span class="highlight" id="left-on-table">$0</span> on the table this month.</p>
-            </div>
-        </section>
-
         <!-- Patients & scheduling -->
         <section class="section">
-            <h2 class="section-title">Patients & scheduling</h2>
+            <h2 class="section-title">Scheduling activity</h2>
             <div class="section-grid thirds">
                 <div class="card">
                     <div class="card-header">

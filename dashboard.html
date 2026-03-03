@@ -381,13 +381,12 @@
         .chart-wrapper {
             position: relative;
             width: 100%;
-            min-height: 200px;
-            aspect-ratio: 2 / 1;
+            height: 280px;
         }
 
         .chart-wrapper canvas {
+            display: block;
             max-width: 100%;
-            height: auto !important;
         }
 
         /* Responsive */
@@ -562,35 +561,30 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.umd.min.js"></script>
     <script>
-        (function() {
-            var billed = [19000, 20500, 18200, 21500, 19800, 22000];
-            var collected = [17800, 19200, 17100, 20100, 18600, 20500];
+        window.addEventListener('load', function() {
+            // Dummy data: last 6 months (Oct 2025 – Mar 2026), solo clinic
             var months = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
-            var leftOnTable = billed[5] - collected[5];
+            var billed = [19200, 20800, 18500, 21800, 20100, 22400];
+            var collected = [17900, 19500, 17200, 20400, 18800, 20900];
 
+            var leftOnTable = billed[5] - collected[5];
             document.getElementById('left-on-table').textContent = '$' + leftOnTable.toLocaleString();
 
-            var ctx = document.getElementById('billed-vs-collected-chart').getContext('2d');
+            var canvas = document.getElementById('billed-vs-collected-chart');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: months,
                     datasets: [
-                        {
-                            label: 'Billed',
-                            data: billed,
-                            backgroundColor: '#798d8e'
-                        },
-                        {
-                            label: 'Collected',
-                            data: collected,
-                            backgroundColor: '#00c1ca'
-                        }
+                        { label: 'Billed',    data: billed,   backgroundColor: '#798d8e' },
+                        { label: 'Collected', data: collected, backgroundColor: '#00c1ca' }
                     ]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: false,
                     layout: {
                         padding: { top: 8, right: 8, bottom: 0, left: 8 }
                     },
@@ -629,7 +623,7 @@
                     }
                 }
             });
-        })();
+        });
     </script>
 </body>
 </html>

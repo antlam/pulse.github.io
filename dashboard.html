@@ -561,39 +561,46 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.umd.min.js"></script>
     <script>
-        window.addEventListener('load', function() {
-            // Dummy data: last 6 months (Oct 2025 – Mar 2026), solo clinic
-            var months = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
-            var billed = [19200, 20800, 18500, 21800, 20100, 22400];
-            var collected = [17900, 19500, 17200, 20400, 18800, 20900];
-
-            var leftOnTable = billed[5] - collected[5];
-            document.getElementById('left-on-table').textContent = '$' + leftOnTable.toLocaleString();
+        (function() {
+            var leftOnTableEl = document.getElementById('left-on-table');
+            if (leftOnTableEl) leftOnTableEl.textContent = '$1,500';
 
             var canvas = document.getElementById('billed-vs-collected-chart');
             if (!canvas) return;
+
+            if (typeof Chart === 'undefined') {
+                canvas.parentNode.innerHTML = '<div style="padding:24px;color:#798d8e;font-size:14px;">Chart.js did not load. Billed (last 6 mo): $19,200, $20,800, $18,500, $21,800, $20,100, $22,400. Collected: $17,900, $19,500, $17,200, $20,400, $18,800, $20,900.</div>';
+                return;
+            }
+
             var ctx = canvas.getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: months,
+                    labels: ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
                     datasets: [
-                        { label: 'Billed',    data: billed,   backgroundColor: '#798d8e' },
-                        { label: 'Collected', data: collected, backgroundColor: '#00c1ca' }
+                        {
+                            label: 'Billed',
+                            data: [19200, 20800, 18500, 21800, 20100, 22400],
+                            backgroundColor: '#798d8e'
+                        },
+                        {
+                            label: 'Collected',
+                            data: [17900, 19500, 17200, 20400, 18800, 20900],
+                            backgroundColor: '#00c1ca'
+                        }
                     ]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    layout: {
-                        padding: { top: 8, right: 8, bottom: 0, left: 8 }
-                    },
+                    layout: { padding: { top: 8, right: 8, bottom: 0, left: 8 } },
                     plugins: {
                         legend: { display: false },
                         tooltip: {
                             callbacks: {
-                                label: function(context) {
-                                    return context.dataset.label + ': $' + context.raw.toLocaleString();
+                                label: function(c) {
+                                    return c.dataset.label + ': $' + Number(c.raw).toLocaleString();
                                 }
                             }
                         }
@@ -603,11 +610,7 @@
                             grid: { display: false },
                             barPercentage: 0.7,
                             categoryPercentage: 0.85,
-                            ticks: {
-                                font: { size: 12 },
-                                color: '#798d8e',
-                                maxRotation: 0
-                            }
+                            ticks: { font: { size: 12 }, color: '#798d8e', maxRotation: 0 }
                         },
                         y: {
                             grid: { display: false },
@@ -615,15 +618,15 @@
                             ticks: {
                                 font: { size: 12 },
                                 color: '#798d8e',
-                                callback: function(value) {
-                                    return value >= 1000 ? '$' + (value / 1000) + 'k' : '$' + value;
+                                callback: function(v) {
+                                    return v >= 1000 ? '$' + (v / 1000) + 'k' : '$' + v;
                                 }
                             }
                         }
                     }
                 }
             });
-        });
+        })();
     </script>
 </body>
 </html>

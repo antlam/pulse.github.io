@@ -523,12 +523,15 @@
         .chart-wrapper {
             position: relative;
             width: 100%;
+            min-width: 300px;
             height: 280px;
+            min-height: 280px;
         }
 
         .chart-wrapper canvas {
             display: block;
-            max-width: 100%;
+            width: 100%;
+            height: 280px;
         }
 
         /* Footer */
@@ -911,27 +914,34 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         window.addEventListener('load', function() {
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js did not load. Try opening the page via a local server (e.g. Live Server or npx serve .) instead of file://');
+                return;
+            }
             // Dummy data: last 6 months (Oct 2025 – Mar 2026), solo clinic
             var months = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
             var billed = [19200, 20800, 18500, 21800, 20100, 22400];
             var collected = [17900, 19500, 17200, 20400, 18800, 20900];
 
             var leftOnTable = billed[5] - collected[5];
-            document.getElementById('left-on-table').textContent = '$' + leftOnTable.toLocaleString();
+            var leftEl = document.getElementById('left-on-table');
+            if (leftEl) leftEl.textContent = '$' + leftOnTable.toLocaleString();
 
             var canvas = document.getElementById('billed-vs-collected-chart');
             if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            new Chart(ctx, {
+
+            function drawChart() {
+                var ctx = canvas.getContext('2d');
+                new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: months,
                     datasets: [
-                        { label: 'Billed',    data: billed,   backgroundColor: '#798d8e' },
-                        { label: 'Collected', data: collected, backgroundColor: '#00c1ca' }
+                        { label: 'Billed',    data: billed,   backgroundColor: '#798d8e', borderWidth: 0 },
+                        { label: 'Collected', data: collected, backgroundColor: '#00c1ca', borderWidth: 0 }
                     ]
                 },
                 options: {
@@ -941,7 +951,7 @@
                         padding: { top: 8, right: 8, bottom: 0, left: 8 }
                     },
                     plugins: {
-                        legend: { display: false },
+                        legend: { display: true, position: 'top' },
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
@@ -962,7 +972,9 @@
                             }
                         },
                         y: {
-                            grid: { display: false },
+                            beginAtZero: true,
+                            max: 25000,
+                            grid: { display: true, color: '#ebeeee' },
                             border: { display: false },
                             ticks: {
                                 font: { size: 12 },
@@ -975,6 +987,10 @@
                     }
                 }
             });
+            }
+
+            // Run after layout so container has dimensions (fixes blank chart)
+            requestAnimationFrame(function() { requestAnimationFrame(drawChart); });
         });
     </script>
 </body>

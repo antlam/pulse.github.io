@@ -232,6 +232,19 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
         }
 
+        .chart-container {
+            max-width: 500px;
+            margin: var(--space-10x) auto 0;
+            padding: var(--space-6x);
+            background: var(--white);
+            border-radius: var(--space-4x);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .chart-container canvas {
+            display: block;
+        }
+
         footer {
             background: var(--brand-50);
             padding: calc(var(--space-10x) * 2) 0 var(--space-10x);
@@ -357,7 +370,7 @@
                         </a>
                         <h1>AI-powered insights for your clinic</h1>
                         <p><strong>Connect your Jane account and get a clear view of your revenue, scheduling, and patient retention.</strong> Join the waitlist and be the first to experience AI-powered insights in plain language.</p>
-                        <a href="dashboard.html" class="btn">View your insights</a>
+                        <a href="#" class="btn">View your insights</a>
                     </div>
                     <div class="hero-image">
                         <div class="hero-image-placeholder">
@@ -377,6 +390,16 @@
                     <div class="feature-content">
                         <h2>Understand your revenue at a glance</h2>
                         <p>See where your revenue comes from, spot trends over time, and get AI-powered recommendations to help grow your practice.</p>
+                    </div>
+                </div>
+
+                <div class="feature-row">
+                    <div class="feature-content">
+                        <h2>Produced revenue vs collected revenue</h2>
+                        <p>Compare what you've invoiced with what's been collected to spot gaps and improve cash flow.</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
                     </div>
                 </div>
 
@@ -432,5 +455,7 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/charts.js"></script>
 </body>
 </html>

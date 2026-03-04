@@ -52,6 +52,7 @@
             --neutral-30: #dde2e2;
             --neutral-50: #bcc6c6;
             --neutral-70: #798d8e;
+            --neutral-80: #5a6b6c;
             --neutral-90: #344243;
             --neutral-100: #161c1d;
             --white: #ffffff;
@@ -443,6 +444,10 @@
             margin-bottom: 0;
         }
 
+        .section-title-count {
+            margin-right: var(--space-1x);
+        }
+
         .section-title-chevron--end {
             margin-left: auto;
         }
@@ -457,7 +462,7 @@
         }
 
         .section-title-chevron {
-            color: var(--text-subdued);
+            color: var(--neutral-80);
             flex-shrink: 0;
             transition: transform 0.2s ease;
         }
@@ -841,7 +846,7 @@
         <!-- Suggested actions (collapsible) -->
         <section id="suggested-actions" class="section section--collapsible" aria-label="Suggested actions">
             <div class="section-title-row" role="button" tabindex="0" aria-expanded="true" aria-controls="suggested-actions-content" id="suggested-actions-toggle">
-                <h2 class="section-title">Suggested actions</h2>
+                <h2 class="section-title"><span class="section-title-count" id="suggested-actions-count"></span>Suggested actions</h2>
                 <div class="section-title-icon-wrapper" tabindex="-1" aria-describedby="suggested-actions-tooltip">
                     <span id="suggested-actions-tooltip" class="section-title-icon-tooltip" role="tooltip">AI-powered suggestions</span>
                     <div class="section-title-icon" aria-hidden="true">
@@ -1268,9 +1273,14 @@
             // Run after layout so container has dimensions (fixes blank chart)
             requestAnimationFrame(function() { requestAnimationFrame(drawChart); });
 
-            // Suggested actions: collapse/expand
+            // Suggested actions: count and collapse/expand
             var suggestedSection = document.getElementById('suggested-actions');
             var suggestedToggle = document.getElementById('suggested-actions-toggle');
+            var countEl = document.getElementById('suggested-actions-count');
+            if (suggestedSection && countEl) {
+                var cards = suggestedSection.querySelectorAll('.recommendation-card');
+                countEl.textContent = cards.length;
+            }
             if (suggestedSection && suggestedToggle) {
                 function toggleSuggested() {
                     var collapsed = suggestedSection.classList.toggle('section--collapsed');

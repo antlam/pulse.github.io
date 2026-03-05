@@ -197,6 +197,10 @@
             color: var(--critical-60);
         }
 
+        .card-change.negative.card-change--default {
+            color: var(--text-default);
+        }
+
         .card-change.neutral {
             color: var(--text-subdued);
         }
@@ -230,8 +234,12 @@
             flex-shrink: 0;
         }
 
-        .week-bar-track {
+        .week-bar-track-outer {
             flex: 1;
+            position: relative;
+        }
+
+        .week-bar-track {
             height: 6px;
             background: var(--neutral-20);
             border-radius: var(--space-05x);
@@ -256,6 +264,44 @@
 
         .week-bar-row--upcoming .week-bar-fill {
             background: var(--neutral-30);
+        }
+
+        .week-bar-row {
+            position: relative;
+        }
+
+        .week-bar-tooltip {
+            position: absolute;
+            left: 50%;
+            bottom: calc(100% + 6px);
+            transform: translateX(-50%);
+            padding: var(--space-2x) var(--space-3x);
+            background: var(--neutral-90);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 500;
+            white-space: nowrap;
+            border-radius: var(--radius-md);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.15s ease, visibility 0.15s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .week-bar-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--neutral-90);
+        }
+
+        .week-bar-track-outer:hover .week-bar-tooltip {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Staff card */
@@ -732,6 +778,19 @@
             height: 280px;
         }
 
+        .card-mini-chart {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            margin-top: var(--space-4x);
+        }
+
+        .card-mini-chart canvas {
+            display: block;
+            width: 100%;
+            height: 200px;
+        }
+
         /* Footer */
         footer {
             background: var(--brand-80);
@@ -904,9 +963,12 @@
                     <div class="card-header">
                         <span class="card-title">New patients</span>
                     </div>
-                    <div class="card-value">4</div>
+                    <div class="card-value">9</div>
                     <div class="card-change positive">
                         <span>↑ 5% from this time last week</span>
+                    </div>
+                    <div class="card-mini-chart">
+                        <canvas id="new-patients-mini-chart" role="img" aria-label="New patients by week"></canvas>
                     </div>
                 </div>
                 <div class="card">
@@ -915,17 +977,17 @@
                     </div>
                     <div class="card-value">78%</div>
                     <div class="card-sub">booked</div>
-                    <div class="card-change negative">
+                    <div class="card-change negative card-change--default">
                         <span>↓ 3% from this time last week</span>
                     </div>
                     <div class="week-bars" aria-label="Daily utilization">
-                        <div class="week-bar-row" title="Sun 75%"><span class="week-bar-label">Sun</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 75%"></div></div></div>
-                        <div class="week-bar-row" title="Mon 50%"><span class="week-bar-label">Mon</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 50%"></div></div></div>
-                        <div class="week-bar-row" title="Tue 95%"><span class="week-bar-label">Tue</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 95%"></div></div></div>
-                        <div class="week-bar-row" title="Wed 88%"><span class="week-bar-label">Wed</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 88%"></div></div></div>
-                        <div class="week-bar-row" title="Thu 72%"><span class="week-bar-label">Thu</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 72%"></div></div></div>
-                        <div class="week-bar-row" title="Fri 90%"><span class="week-bar-label">Fri</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 90%"></div></div></div>
-                        <div class="week-bar-row week-bar-row--upcoming" title="Sat — not yet"><span class="week-bar-label">Sat</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 0%"></div></div></div>
+                        <div class="week-bar-row"><span class="week-bar-label">Sun</span><div class="week-bar-track-outer"><span class="week-bar-tooltip" role="tooltip">75%</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 75%"></div></div></div></div>
+                        <div class="week-bar-row"><span class="week-bar-label">Mon</span><div class="week-bar-track-outer"><span class="week-bar-tooltip" role="tooltip">50%</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 50%"></div></div></div></div>
+                        <div class="week-bar-row"><span class="week-bar-label">Tue</span><div class="week-bar-track-outer"><span class="week-bar-tooltip" role="tooltip">95%</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 95%"></div></div></div></div>
+                        <div class="week-bar-row"><span class="week-bar-label">Wed</span><div class="week-bar-track-outer"><span class="week-bar-tooltip" role="tooltip">88%</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 88%"></div></div></div></div>
+                        <div class="week-bar-row"><span class="week-bar-label">Thu</span><div class="week-bar-track-outer"><span class="week-bar-tooltip" role="tooltip">72%</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 72%"></div></div></div></div>
+                        <div class="week-bar-row"><span class="week-bar-label">Fri</span><div class="week-bar-track-outer"><span class="week-bar-tooltip" role="tooltip">90%</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 90%"></div></div></div></div>
+                        <div class="week-bar-row week-bar-row--upcoming"><span class="week-bar-label">Sat</span><div class="week-bar-track-outer"><div class="week-bar-track"><div class="week-bar-fill" style="width: 0%"></div></div></div></div>
                     </div>
                 </div>
                 <div class="card">
@@ -1272,6 +1334,75 @@
 
             // Run after layout so container has dimensions (fixes blank chart)
             requestAnimationFrame(function() { requestAnimationFrame(drawChart); });
+
+            // New patients mini chart: weeks of month, one line, tooltip shows actual number
+            var miniCanvas = document.getElementById('new-patients-mini-chart');
+            if (miniCanvas) {
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        var miniCtx = miniCanvas.getContext('2d');
+                        var weeks = ['March 6', 'Feb 27', 'Feb 20', 'Feb 13'];
+                        var newPatientsData = [1, 2, 2, 9];
+                        new Chart(miniCtx, {
+                            type: 'line',
+                            data: {
+                                labels: weeks,
+                                datasets: [{
+                                    label: 'New patients',
+                                    data: newPatientsData,
+                                    borderColor: '#00c1ca',
+                                    backgroundColor: 'rgba(0, 193, 202, 0.1)',
+                                    borderWidth: 2,
+                                    fill: true,
+                                    tension: 0.3,
+                                    pointRadius: 2,
+                                    pointHoverRadius: 5
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                layout: { padding: { top: 4, right: 4, bottom: 0, left: 0 } },
+                                interaction: { intersect: true, mode: 'index' },
+                                plugins: {
+                                    legend: { display: false },
+                                    tooltip: {
+                                        displayColors: false,
+                                        backgroundColor: '#344243',
+                                        borderWidth: 0,
+                                        padding: 6,
+                                        titleFont: { size: 0 },
+                                        bodyFont: { size: 12, weight: '600' },
+                                        bodyColor: '#ffffff',
+                                        callbacks: {
+                                            title: function() { return ''; },
+                                            label: function(context) {
+                                                return context.raw + ' new';
+                                            }
+                                        }
+                                    }
+                                },
+                                scales: {
+                                    x: {
+                                        grid: { display: false },
+                                        ticks: { font: { size: 10 }, color: '#798d8e', maxRotation: 0 }
+                                    },
+                                    y: {
+                                        beginAtZero: true,
+                                        grid: { display: true, color: '#ebeeee' },
+                                        border: { display: false },
+                                        ticks: {
+                                            font: { size: 10 },
+                                            color: '#798d8e',
+                                            stepSize: 1
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    });
+                });
+            }
 
             // Suggested actions: count and collapse/expand
             var suggestedSection = document.getElementById('suggested-actions');

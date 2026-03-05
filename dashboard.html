@@ -611,6 +611,10 @@
             grid-template-columns: repeat(3, 1fr);
         }
 
+        .section-grid.halves {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
         .section-grid.quarters {
             grid-template-columns: repeat(4, 1fr);
         }
@@ -872,6 +876,7 @@
         @media (max-width: 768px) {
             .section-grid.wide,
             .section-grid.thirds,
+            .section-grid.halves,
             .section-grid.quarters {
                 grid-template-columns: 1fr;
             }
@@ -1014,15 +1019,6 @@
             <div class="section-grid thirds">
                 <div class="card">
                     <div class="card-header">
-                        <span class="card-title">Revenue this week</span>
-                    </div>
-                    <div class="card-value">$6,240</div>
-                    <div class="card-change positive">
-                        <span>↑ 8% vs last week</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
                         <span class="card-title">Collection rate</span>
                     </div>
                     <div class="card-value">94%</div>
@@ -1041,24 +1037,10 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <span class="card-title">Outstanding balances</span>
-                    </div>
-                    <div class="card-value">$2,340</div>
-                    <div class="card-sub">Across 12 accounts</div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
                         <span class="card-title">Revenue lost</span>
                     </div>
                     <div class="card-value">$480</div>
                     <div class="card-sub">No-shows & late cancellations this week</div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">Projected revenue</span>
-                    </div>
-                    <div class="card-value">$5,920</div>
-                    <div class="card-sub">Upcoming appointments this week</div>
                 </div>
             </div>
         </section>

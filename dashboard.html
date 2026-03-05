@@ -816,24 +816,30 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 8px 18px;
+            gap: 10px;
+            padding: 10px 20px;
             font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 0.8125rem;
+            font-size: 0.875rem;
             font-weight: 600;
-            border-radius: 999px;
-            border: 1px solid rgba(0, 193, 202, 0.45);
-            background: rgba(234, 250, 251, 0.9);
-            color: var(--brand-80);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background: linear-gradient(var(--white), var(--white)) padding-box,
+                linear-gradient(135deg, var(--discovery-60) 0%, var(--brand-50) 100%) border-box;
+            color: var(--neutral-100);
             cursor: pointer;
-            box-shadow: 0 0 0 1px rgba(0, 193, 202, 0.08);
-            transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.08s ease;
+            transition: box-shadow 0.2s ease, transform 0.08s ease;
+        }
+
+        .executive-summary-open-ai .executive-summary-open-ai-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
         }
 
         .executive-summary-open-ai:hover {
-            background: var(--brand-05);
-            border-color: var(--brand-60);
-            box-shadow: 0 0 14px rgba(0, 193, 202, 0.25);
+            box-shadow: 0 0 16px rgba(114, 46, 209, 0.2), 0 0 16px rgba(0, 193, 202, 0.15);
             transform: translateY(-1px);
         }
 
@@ -1283,7 +1289,8 @@
                 filling softer days and rebooking patients who have drifted away.
             </p>
             <button type="button" class="executive-summary-open-ai" id="open-dashboard-assistant">
-                Ask about this dashboard
+                <img src="assets/Circa_gradient.png" alt="" class="executive-summary-open-ai-icon" aria-hidden="true">
+                Ask Circa
             </button>
         </section>
 

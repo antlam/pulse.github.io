@@ -52,6 +52,7 @@
             --neutral-30: #dde2e2;
             --neutral-50: #bcc6c6;
             --neutral-70: #798d8e;
+            --neutral-80: #5a6b6c;
             --neutral-90: #344243;
             --neutral-100: #161c1d;
             --white: #ffffff;
@@ -204,6 +205,57 @@
             font-size: 0.8125rem;
             color: var(--text-subdued);
             margin-top: var(--space-1x);
+        }
+
+        .week-bars {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2x);
+            margin-top: var(--space-4x);
+            padding-top: var(--space-3x);
+            border-top: 1px solid var(--neutral-20);
+        }
+
+        .week-bar-row {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3x);
+        }
+
+        .week-bar-label {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--text-subdued);
+            width: 24px;
+            flex-shrink: 0;
+        }
+
+        .week-bar-track {
+            flex: 1;
+            height: 6px;
+            background: var(--neutral-20);
+            border-radius: var(--space-05x);
+            overflow: hidden;
+        }
+
+        .week-bar-fill {
+            height: 100%;
+            background: var(--brand-50);
+            border-radius: var(--space-05x);
+            min-width: 2px;
+            transition: width 0.2s ease;
+        }
+
+        .week-bar-row--upcoming .week-bar-label {
+            color: var(--text-disabled);
+        }
+
+        .week-bar-row--upcoming .week-bar-track {
+            background: var(--neutral-10);
+        }
+
+        .week-bar-row--upcoming .week-bar-fill {
+            background: var(--neutral-30);
         }
 
         /* Staff card */
@@ -392,6 +444,42 @@
             margin-bottom: 0;
         }
 
+        .section-title-count {
+            margin-right: var(--space-1x);
+        }
+
+        .section-title-chevron--end {
+            margin-left: auto;
+        }
+
+        .section--collapsible .section-title-row {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .section--collapsible .section-title-row:hover {
+            opacity: 0.85;
+        }
+
+        .section-title-chevron {
+            color: var(--neutral-80);
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .section--collapsed .section-title-chevron {
+            transform: rotate(-90deg);
+        }
+
+        .section--collapsible .suggested-actions-content {
+            overflow: hidden;
+            transition: opacity 0.2s ease;
+        }
+
+        .section--collapsed .suggested-actions-content {
+            display: none;
+        }
+
         .section-title-icon {
             width: 36px;
             height: 36px;
@@ -446,6 +534,22 @@
             opacity: 1;
             visibility: visible;
         }
+
+        /* Icons (Burrito-style set: assets/icons.svg) */
+        .icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            vertical-align: middle;
+            color: inherit;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+        .icon--sm { width: 16px; height: 16px; }
+        .icon--md { width: 24px; height: 24px; }
+        .icon--lg { width: 32px; height: 32px; }
 
         .section-grid {
             display: grid;
@@ -739,17 +843,19 @@
             <p>It's early March. Here's where your clinic stands heading into the rest of the month.</p>
         </div>
 
-        <!-- AI Recommendations -->
-        <section class="section">
-            <div class="section-title-row">
-                <h2 class="section-title">Suggested actions</h2>
-                <div class="section-title-icon-wrapper" tabindex="0" aria-describedby="suggested-actions-tooltip">
+        <!-- Suggested actions (collapsible) -->
+        <section id="suggested-actions" class="section section--collapsible" aria-label="Suggested actions">
+            <div class="section-title-row" role="button" tabindex="0" aria-expanded="true" aria-controls="suggested-actions-content" id="suggested-actions-toggle">
+                <h2 class="section-title"><span class="section-title-count" id="suggested-actions-count"></span>Suggested actions</h2>
+                <div class="section-title-icon-wrapper" tabindex="-1" aria-describedby="suggested-actions-tooltip">
                     <span id="suggested-actions-tooltip" class="section-title-icon-tooltip" role="tooltip">AI-powered suggestions</span>
                     <div class="section-title-icon" aria-hidden="true">
                         <img src="assets/Circa_gradient.png" alt="">
                     </div>
                 </div>
+                <svg class="icon section-title-chevron section-title-chevron--end" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
+            <div id="suggested-actions-content" class="suggested-actions-content">
             <div class="recommendations-grid">
                 <div class="recommendation-card">
                     <p>Your <span class="highlight">Tuesday afternoon</span> slots have 40% more cancellations than other days. Consider sending reminder messages 48 hours before these appointments.</p>
@@ -772,6 +878,7 @@
                     <a href="#" class="insight-cta">Update availability</a>
                 </div>
             </div>
+            </div>
         </section>
 
         <!-- What you earned vs. what you collected -->
@@ -785,6 +892,48 @@
                 </p>
                 <div class="chart-wrapper">
                     <canvas id="billed-vs-collected-chart" role="img" aria-label="Line chart: Projected and collected revenue by month"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- This week at a glance -->
+        <section class="section">
+            <h2 class="section-title">This week at a glance</h2>
+            <div class="section-grid thirds">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">New patients</span>
+                    </div>
+                    <div class="card-value">4</div>
+                    <div class="card-change positive">
+                        <span>↑ 5% from this time last week</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Schedule utilization</span>
+                    </div>
+                    <div class="card-value">78%</div>
+                    <div class="card-sub">booked</div>
+                    <div class="card-change negative">
+                        <span>↓ 3% from this time last week</span>
+                    </div>
+                    <div class="week-bars" aria-label="Daily utilization">
+                        <div class="week-bar-row" title="Sun 75%"><span class="week-bar-label">Sun</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 75%"></div></div></div>
+                        <div class="week-bar-row" title="Mon 50%"><span class="week-bar-label">Mon</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 50%"></div></div></div>
+                        <div class="week-bar-row" title="Tue 95%"><span class="week-bar-label">Tue</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 95%"></div></div></div>
+                        <div class="week-bar-row" title="Wed 88%"><span class="week-bar-label">Wed</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 88%"></div></div></div>
+                        <div class="week-bar-row" title="Thu 72%"><span class="week-bar-label">Thu</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 72%"></div></div></div>
+                        <div class="week-bar-row" title="Fri 90%"><span class="week-bar-label">Fri</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 90%"></div></div></div>
+                        <div class="week-bar-row week-bar-row--upcoming" title="Sat — not yet"><span class="week-bar-label">Sat</span><div class="week-bar-track"><div class="week-bar-fill" style="width: 0%"></div></div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Revenue this week</span>
+                    </div>
+                    <div class="card-value">$6,240</div>
+                    <div class="card-sub">collected this week</div>
                 </div>
             </div>
         </section>
@@ -1123,6 +1272,28 @@
 
             // Run after layout so container has dimensions (fixes blank chart)
             requestAnimationFrame(function() { requestAnimationFrame(drawChart); });
+
+            // Suggested actions: count and collapse/expand
+            var suggestedSection = document.getElementById('suggested-actions');
+            var suggestedToggle = document.getElementById('suggested-actions-toggle');
+            var countEl = document.getElementById('suggested-actions-count');
+            if (suggestedSection && countEl) {
+                var cards = suggestedSection.querySelectorAll('.recommendation-card');
+                countEl.textContent = cards.length;
+            }
+            if (suggestedSection && suggestedToggle) {
+                function toggleSuggested() {
+                    var collapsed = suggestedSection.classList.toggle('section--collapsed');
+                    suggestedToggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+                }
+                suggestedToggle.addEventListener('click', toggleSuggested);
+                suggestedToggle.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleSuggested();
+                    }
+                });
+            }
         });
     </script>
 </body>

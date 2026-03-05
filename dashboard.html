@@ -710,6 +710,389 @@
             content: " →";
         }
 
+        /* Executive summary row: 2 columns on large screens */
+        .executive-summary-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-bottom: var(--space-8x);
+        }
+
+        .executive-summary-row .section {
+            margin-bottom: 0;
+        }
+
+        @media (min-width: 960px) {
+            .executive-summary-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-6x);
+                align-items: stretch;
+            }
+            .executive-summary-actions-section {
+                margin-top: 0;
+            }
+        }
+
+        /* Executive summary */
+        .executive-summary {
+            background: var(--white);
+            border-radius: var(--space-3x) var(--space-3x) 0 0;
+            padding: var(--space-6x);
+            border: var(--border-width) solid var(--border-default);
+            margin-bottom: 0;
+        }
+
+        .executive-summary-heading {
+            font-size: 0.625rem; /* ~10px */
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-subdued);
+            margin-bottom: var(--space-4x);
+        }
+
+        .executive-summary-body {
+            font-size: 0.9375rem; /* ~15px */
+            line-height: 1.7;
+            color: var(--text-default);
+        }
+
+        .executive-summary-body strong {
+            font-weight: 600;
+            color: var(--text-default);
+        }
+
+        .executive-summary-highlight {
+            display: block;
+            margin-bottom: var(--space-4x);
+            background: var(--brand-05);
+            border-left: 3px solid var(--brand-60);
+            border-radius: 4px;
+            padding: 10px 14px;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: var(--brand-80);
+        }
+
+        .executive-summary-highlight strong {
+            color: var(--neutral-100);
+        }
+
+        /* Ask bar */
+        .executive-summary-query {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        @keyframes input-glow {
+            0%, 100% {
+                box-shadow: 0 0 0 2px rgba(0, 193, 202, 0.55), 0 0 20px rgba(0, 193, 202, 0.35), 0 0 36px rgba(0, 193, 202, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 0 2px rgba(114, 46, 209, 0.55), 0 0 24px rgba(114, 46, 209, 0.35), 0 0 40px rgba(114, 46, 209, 0.2);
+            }
+        }
+
+        .executive-summary-query-input {
+            flex: 1 1 260px;
+            min-width: 0;
+            padding: 10px 14px;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.875rem;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            color: var(--text-default);
+            background: #fafafa;
+            outline: none;
+            transition: background-color 0.15s ease;
+            animation: input-glow 2.5s ease-in-out infinite;
+        }
+
+        .executive-summary-query-input::placeholder {
+            color: var(--text-subdued);
+        }
+
+        .executive-summary-query-input:focus {
+            background: var(--white);
+            animation: input-glow 2s ease-in-out infinite;
+        }
+
+        .executive-summary-open-ai {
+            margin-top: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 18px;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 193, 202, 0.45);
+            background: rgba(234, 250, 251, 0.9);
+            color: var(--brand-80);
+            cursor: pointer;
+            box-shadow: 0 0 0 1px rgba(0, 193, 202, 0.08);
+            transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.08s ease;
+        }
+
+        .executive-summary-open-ai:hover {
+            background: var(--brand-05);
+            border-color: var(--brand-60);
+            box-shadow: 0 0 14px rgba(0, 193, 202, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .executive-summary-query-button {
+            flex: 0 0 auto;
+            padding: 10px 20px;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 8px;
+            border: 2px solid rgba(0, 193, 202, 0.4);
+            background: var(--white);
+            color: var(--brand-60);
+            cursor: pointer;
+            transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 0 12px rgba(0, 193, 202, 0.12);
+        }
+
+        .executive-summary-query-button:hover {
+            border-color: var(--brand-60);
+            color: var(--brand-70);
+            box-shadow: 0 0 16px rgba(0, 193, 202, 0.2);
+        }
+
+        .executive-summary-actions-section {
+            margin-top: 0;
+        }
+
+        .executive-summary-actions-wrapper {
+            width: 100%;
+        }
+
+        .executive-summary-actions-card {
+            background: var(--white);
+            border-radius: 0 0 var(--space-3x) var(--space-3x);
+            padding: var(--space-6x);
+            border: var(--border-width) solid var(--border-default);
+            border-top: 0;
+        }
+
+        .executive-summary-actions-header {
+            margin-bottom: 14px;
+        }
+
+        .executive-summary-actions-header .section-title {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-subdued);
+        }
+
+        .executive-summary-actions {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .executive-summary-action {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .executive-summary-action:first-child {
+            padding-top: 0;
+        }
+
+        .executive-summary-action:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .checklist-checkbox {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            margin-top: 5px;
+            border: 1.5px solid var(--neutral-30);
+            border-radius: 5px;
+            background: var(--white);
+            cursor: pointer;
+            transition: border-color 0.15s ease;
+        }
+
+        .checklist-checkbox:hover {
+            border-color: var(--brand-60);
+        }
+
+        .executive-summary-action-content {
+            flex: 1;
+            min-width: 0;
+            max-width: 560px;
+        }
+
+        .executive-summary-action-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-default);
+            margin-bottom: 4px;
+        }
+
+        .executive-summary-action p {
+            font-size: 0.8125rem;
+            color: var(--text-subdued);
+            line-height: 1.55;
+            margin-bottom: 10px;
+        }
+
+        .executive-summary-action .insight-cta {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--brand-60);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Large screens: both cards get full rounded corners */
+        @media (min-width: 960px) {
+            .executive-summary-row .executive-summary {
+                border-radius: var(--space-3x);
+            }
+            .executive-summary-row .executive-summary-actions-card {
+                border-radius: var(--space-3x);
+                border-top: var(--border-width) solid var(--border-default);
+            }
+        }
+
+        /* Dashboard assistant side panel */
+        .dashboard-assistant-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(22, 28, 29, 0.35);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            z-index: 40;
+        }
+
+        .dashboard-assistant-backdrop.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .dashboard-assistant {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 360px;
+            max-width: 100%;
+            background: var(--white);
+            transform: translateX(100%);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            z-index: 41;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dashboard-assistant.is-open {
+            transform: translateX(0);
+            box-shadow: -16px 0 40px rgba(22, 28, 29, 0.35);
+        }
+
+        .dashboard-assistant-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-5x) var(--space-6x) var(--space-3x);
+            border-bottom: 1px solid var(--neutral-20);
+        }
+
+        .dashboard-assistant-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--neutral-100);
+        }
+
+        .dashboard-assistant-close {
+            border: none;
+            background: transparent;
+            color: var(--neutral-70);
+            font-size: 1.25rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: var(--space-1x);
+        }
+
+        .dashboard-assistant-close:hover {
+            color: var(--neutral-100);
+        }
+
+        .dashboard-assistant-body {
+            padding: var(--space-4x) var(--space-6x) var(--space-6x);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4x);
+            height: 100%;
+        }
+
+        .dashboard-assistant-hint {
+            font-size: 0.8125rem;
+            color: var(--text-subdued);
+        }
+
+        .dashboard-assistant-thread {
+            flex: 1;
+            min-height: 140px;
+            padding: var(--space-3x);
+            border-radius: var(--space-2x);
+            background: var(--neutral-10);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3x);
+        }
+
+        .thread-message {
+            font-size: 0.8125rem;
+            line-height: 1.5;
+            padding: var(--space-2x) var(--space-3x);
+            border-radius: var(--space-2x);
+            max-width: 100%;
+        }
+
+        .thread-message.user {
+            align-self: flex-end;
+            background: var(--brand-05);
+            color: var(--brand-80);
+            border: 1px solid rgba(0, 193, 202, 0.25);
+        }
+
+        .thread-message.assistant {
+            align-self: flex-start;
+            background: var(--white);
+            color: var(--text-default);
+            border: 1px solid var(--neutral-20);
+        }
+
+        .dashboard-assistant-input {
+            margin-top: auto;
+        }
+
         /* Chart card */
         .chart-card {
             background: var(--white);
@@ -907,7 +1290,90 @@
             <p>It's early March. Here's where your clinic stands heading into the rest of the month.</p>
         </div>
 
-        <!-- Suggested actions (collapsible) -->
+        <div class="executive-summary-row">
+        <section class="executive-summary" aria-label="Executive summary for Jonathan">
+            <div class="executive-summary-heading">Executive summary for Jonathan</div>
+            <span class="executive-summary-highlight">
+                🎉 Because you tightened your reminder settings last month, your no-show rate has dropped from
+                <strong>15% to 12%</strong> — keeping roughly <strong>$480</strong> a week on the schedule instead of
+                lost revenue.
+            </span>
+            <p class="executive-summary-body">
+                You're on track for <strong>$22,400</strong> in revenue this month with a strong
+                <strong>94% collection rate</strong>. This week is <strong>78% booked</strong>, with most growth coming
+                from <strong>massage therapy</strong> and steady membership activity — your main opportunities are
+                filling softer days and rebooking patients who have drifted away.
+            </p>
+            <button type="button" class="executive-summary-open-ai" id="open-dashboard-assistant">
+                Ask about this dashboard
+            </button>
+        </section>
+
+        <section class="section executive-summary-actions-section" aria-label="Suggested actions">
+            <div class="executive-summary-actions-wrapper">
+                <div class="executive-summary-actions-card">
+                    <div class="executive-summary-actions-header">
+                        <div class="section-title-row" style="margin-bottom: 0;">
+                            <h2 class="section-title">Suggested actions</h2>
+                            <div class="section-title-icon">
+                                <img src="assets/Circa_gradient.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="executive-summary-actions-highlight">
+                        <ul class="executive-summary-actions">
+                            <li class="executive-summary-action">
+                                <span class="checklist-checkbox" aria-hidden="true"></span>
+                                <div class="executive-summary-action-content">
+                                    <span class="executive-summary-action-title">Tighten your no-shows and gaps</span>
+                                    <p>You're losing revenue to no-shows and a few slower days in the week. A quick review of reminder settings and schedule patterns can close that gap without adding more hours to your day.</p>
+                                    <a href="#" class="insight-cta">Review no-shows and reminder settings</a>
+                                </div>
+                            </li>
+                            <li class="executive-summary-action">
+                                <span class="checklist-checkbox" aria-hidden="true"></span>
+                                <div class="executive-summary-action-content">
+                                    <span class="executive-summary-action-title">Bring lapsed patients back in</span>
+                                    <p><strong>23 patients</strong> haven't booked in 60+ days. A short, friendly recall message can turn those missed visits into booked appointments and make better use of your remaining capacity.</p>
+                                    <a href="#" class="insight-cta">Reach out to the 23 lapsed patients</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+        <div class="dashboard-assistant-backdrop" id="dashboard-assistant-backdrop"></div>
+        <aside class="dashboard-assistant" id="dashboard-assistant" aria-label="Dashboard assistant" aria-hidden="true">
+            <div class="dashboard-assistant-header">
+                <div class="dashboard-assistant-title">Ask about this dashboard</div>
+                <button type="button" class="dashboard-assistant-close" id="close-dashboard-assistant" aria-label="Close assistant">
+                    ×
+                </button>
+            </div>
+            <div class="dashboard-assistant-body">
+                <p class="dashboard-assistant-hint">
+                    Ask about revenue, utilization, no-shows, or the suggested actions on this dashboard. I can explain the numbers and what to do next.
+                </p>
+                <div class="dashboard-assistant-thread">
+                    <div class="thread-message user">Why is Monday only 50% booked when other days are higher?</div>
+                    <div class="thread-message assistant">Monday is often softer because it’s right after the weekend — fewer people book then. Your Tue–Fri are 72–95% booked, so the main lever is filling that Monday gap: try a short “start your week” promo or move a high-demand service (like massage) into Monday to pull demand.</div>
+                </div>
+                <form class="executive-summary-query dashboard-assistant-input" aria-label="Ask a question about this dashboard">
+                    <input
+                        id="executive-summary-question"
+                        class="executive-summary-query-input"
+                        type="text"
+                        name="question"
+                        placeholder="e.g. What’s driving the 23 lapsed patients?"
+                    />
+                </form>
+            </div>
+        </aside>
+
+        <!-- Suggested actions (collapsible) – commented out to avoid redundancy with executive summary
         <section id="suggested-actions" class="section section--collapsible" aria-label="Suggested actions">
             <div class="section-title-row" role="button" tabindex="0" aria-expanded="true" aria-controls="suggested-actions-content" id="suggested-actions-toggle">
                 <h2 class="section-title"><span class="section-title-count" id="suggested-actions-count"></span>Suggested actions</h2>
@@ -920,30 +1386,31 @@
                 <svg class="icon section-title-chevron section-title-chevron--end" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
             <div id="suggested-actions-content" class="suggested-actions-content">
-            <div class="recommendations-grid">
-                <div class="recommendation-card">
-                    <p>Your <span class="highlight">Tuesday afternoon</span> slots have 40% more cancellations than other days. Consider sending reminder messages 48 hours before these appointments.</p>
-                    <a href="#" class="insight-cta">Send reminders in Jane</a>
+                <div class="recommendations-grid">
+                    <div class="recommendation-card">
+                        <p>Your <span class="highlight">Tuesday afternoon</span> slots have 40% more cancellations than other days. Consider sending reminder messages 48 hours before these appointments.</p>
+                        <a href="#" class="insight-cta">Send reminders in Jane</a>
+                    </div>
+                    <div class="recommendation-card">
+                        <p><span class="highlight">23 patients</span> haven't booked a follow-up in over 60 days. A quick check-in email could help bring them back.</p>
+                        <a href="#" class="insight-cta">View patient list</a>
+                    </div>
+                    <div class="recommendation-card">
+                        <p>Revenue from <span class="highlight">massage therapy</span> is up 18% this month. This service is trending — consider promoting it more.</p>
+                        <a href="#" class="insight-cta">See service details</a>
+                    </div>
+                    <div class="recommendation-card">
+                        <p>You've had <span class="highlight">4 no-shows</span> this week — your reminder settings may need adjusting.</p>
+                        <a href="#" class="insight-cta">Adjust reminder settings</a>
+                    </div>
+                    <div class="recommendation-card">
+                        <p><span class="highlight">10 patients</span> requested 9am this month but you're not open then — this could be costing you bookings.</p>
+                        <a href="#" class="insight-cta">Update availability</a>
+                    </div>
                 </div>
-                <div class="recommendation-card">
-                    <p><span class="highlight">23 patients</span> haven't booked a follow-up in over 60 days. A quick check-in email could help bring them back.</p>
-                    <a href="#" class="insight-cta">View patient list</a>
-                </div>
-                <div class="recommendation-card">
-                    <p>Revenue from <span class="highlight">massage therapy</span> is up 18% this month. This service is trending — consider promoting it more.</p>
-                    <a href="#" class="insight-cta">See service details</a>
-                </div>
-                <div class="recommendation-card">
-                    <p>You've had <span class="highlight">4 no-shows</span> this week — your reminder settings may need adjusting.</p>
-                    <a href="#" class="insight-cta">Adjust reminder settings</a>
-                </div>
-                <div class="recommendation-card">
-                    <p><span class="highlight">10 patients</span> requested 9am this month but you're not open then — this could be costing you bookings.</p>
-                    <a href="#" class="insight-cta">Update availability</a>
-                </div>
-            </div>
             </div>
         </section>
+        -->
 
         <!-- What you earned vs. what you collected -->
         <section class="section">
@@ -1474,6 +1941,56 @@
                     }
                 });
             }
+
+            // Dashboard assistant side panel
+            var assistant = document.getElementById('dashboard-assistant');
+            var assistantBackdrop = document.getElementById('dashboard-assistant-backdrop');
+            var openAssistantBtn = document.getElementById('open-dashboard-assistant');
+            var closeAssistantBtn = document.getElementById('close-dashboard-assistant');
+            var assistantInput = document.getElementById('executive-summary-question');
+            var lastFocusedElement = null;
+
+            function openAssistant() {
+                if (!assistant) return;
+                lastFocusedElement = document.activeElement;
+                assistant.classList.add('is-open');
+                if (assistantBackdrop) {
+                    assistantBackdrop.classList.add('is-visible');
+                }
+                assistant.setAttribute('aria-hidden', 'false');
+                if (assistantInput) {
+                    setTimeout(function() {
+                        assistantInput.focus();
+                    }, 80);
+                }
+            }
+
+            function closeAssistant() {
+                if (!assistant) return;
+                assistant.classList.remove('is-open');
+                if (assistantBackdrop) {
+                    assistantBackdrop.classList.remove('is-visible');
+                }
+                assistant.setAttribute('aria-hidden', 'true');
+                if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+                    lastFocusedElement.focus();
+                }
+            }
+
+            if (openAssistantBtn && assistant) {
+                openAssistantBtn.addEventListener('click', openAssistant);
+            }
+            if (closeAssistantBtn) {
+                closeAssistantBtn.addEventListener('click', closeAssistant);
+            }
+            if (assistantBackdrop) {
+                assistantBackdrop.addEventListener('click', closeAssistant);
+            }
+            window.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && assistant && assistant.classList.contains('is-open')) {
+                    closeAssistant();
+                }
+            });
         });
     </script>
 </body>
